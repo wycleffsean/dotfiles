@@ -1,0 +1,24 @@
+[user]
+	name = Sean Carey
+	email = wycleffsean@gmail.com
+[diff]
+	tool = bc3
+	prompt = false
+[merge]
+	tool = bc3
+[difftool]
+	bcomp = trustExitCode
+[mergetool]
+	bcomp = trustExitCode
+[core]
+	excludesfile = /Users/sean/.gitignore_global
+[difftool "sourcetree"]
+	cmd = /usr/local/bin/bcomp $LOCAL $REMOTE
+	path = 
+[mergetool "sourcetree"]
+	cmd = /usr/local/bin/bcomp $LOCAL $REMOTE $BASE $MERGED
+	trustExitCode = true
+[push]
+	default = simple
+[alias]
+	ignored = ls-files -o -i --exclude-standard
