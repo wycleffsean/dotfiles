@@ -1,0 +1,14 @@
+[core]
+        excludesfile = /home/vagrant/.gitignore_global
+[user]
+	name = Sean Carey
+	email = sean.carey@technekes.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = true
+	pager = true
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
