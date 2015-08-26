@@ -1,5 +1,4 @@
 .DS_Stores
 .DS_Store
 *.dump
-*.env
 *.swp
