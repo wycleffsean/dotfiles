@@ -45,6 +45,7 @@ syntax on
 let g:airline#extension#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t' "only show filename
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 " let g:ctrlp_map = '<D-p>'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_dont_split = 'NERD_tree_2'
