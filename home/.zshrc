@@ -51,13 +51,15 @@ ZSH_THEME="clean"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git forklift vagrant compleat docker colored-man colorize hsi z osx)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:/usr/local/heroku/bin:/Users/sean/.rvm/gems/ruby-2.1.1/bin:/Users/sean/.rvm/gems/ruby-2.1.1@global/bin:/Users/sean/.rvm/rubies/ruby-2.1.1/bin:/Users/sean/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/sean/.rvm/bin"
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+#export PATH="$PATH:/Users/sean/.rvm/gems/ruby-2.1.1/bin:/Users/sean/.rvm/gems/ruby-2.1.1@global/bin:/Users/sean/.rvm/rubies/ruby-2.1.1/bin:/Users/sean/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/sean/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -82,10 +84,10 @@ export PATH="$PATH:/usr/local/heroku/bin:/Users/sean/.rvm/gems/ruby-2.1.1/bin:/U
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="`$EDITOR` ~/.zshrc"
+alias zshsource="source ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+alias dm="docker-machine"
 
 export LESS="${LESS} -S"
 export EDITOR=vim
