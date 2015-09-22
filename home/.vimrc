@@ -17,6 +17,9 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 
+" Colorschemes
+Plugin 'endel/vim-github-colorscheme' "pretty diffs
+
 " Required, plugins available after
 call vundle#end()
 filetype plugin indent on
@@ -72,3 +75,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+if &diff
+  colorscheme github
+endif
