@@ -11,6 +11,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-fugitive'
 
 " Colorschemes
 Plugin 'endel/vim-github-colorscheme' "pretty diffs
