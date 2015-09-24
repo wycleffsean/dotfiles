@@ -26,6 +26,7 @@ set showcmd
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set splitbelow
 set splitright
+set backspace=2 "make backspace work like most other apps
 set expandtab
 set shiftwidth=2
 set softtabstop=2
