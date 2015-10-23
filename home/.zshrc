@@ -89,6 +89,8 @@ alias zshconfig="`$EDITOR` ~/.zshrc"
 alias zshsource="source ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias dm="docker-machine"
+alias swp='find . -iname "*.sw*"'
+alias vim-swp="vim -O $(swp | sed s/\.swp// | sed 's/^.\///' | sed 's/\/./\//' | xargs)"
 
 export LESS="${LESS} -S"
 export EDITOR=vim
