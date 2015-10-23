@@ -27,6 +27,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set splitbelow
 set splitright
 set backspace=2 "make backspace work like most other apps
+set ignorecase          " searches are case insensitive...
+set smartcase           " ... unless they contain at least one capital letter
 set expandtab
 set shiftwidth=2
 set softtabstop=2
