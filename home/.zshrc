@@ -92,5 +92,8 @@ alias dm="docker-machine"
 alias swp='find . -iname "*.sw*"'
 alias vim-swp="vim -O $(swp | sed s/\.swp// | sed 's/^.\///' | sed 's/\/./\//' | xargs)"
 
+# Docker Machine
+eval "$(docker-machine env default)"
+
 export LESS="${LESS} -S"
 export EDITOR=vim
