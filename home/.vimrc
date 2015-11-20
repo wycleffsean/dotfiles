@@ -20,6 +20,11 @@ Plugin 'endel/vim-github-colorscheme' "pretty diffs
 call vundle#end()
 filetype plugin indent on
 
+set nocompatible " Turn off vi compatibility
+set smartindent
+set autoindent
+filetype indent on " load indent file for the current filetype
+
 set laststatus=2
 set number
 set showcmd
