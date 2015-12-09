@@ -91,7 +91,9 @@ alias zshsource="source ~/.zshrc"
 alias dm="docker-machine"
 alias fig="docker-compose"
 alias swp='find . -iname "*.sw*"'
+alias vim-git="vim -O $(git status -s | sed "s/??/ ?/g" | cut -d " " -f 3 | xargs)"
 alias vim-swp="vim -O $(swp | sed s/\.swp// | sed 's/^.\///' | sed 's/\/./\//' | xargs)"
+alias tail-log="tail -f log/development.log"
 
 # Docker Machine
 eval "$(docker-machine env default)"
