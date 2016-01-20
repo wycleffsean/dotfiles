@@ -100,3 +100,4 @@ eval "$(docker-machine env default)"
 
 export LESS="${LESS} -S"
 export EDITOR=vim
+export GOPATH=$HOME/code/go
