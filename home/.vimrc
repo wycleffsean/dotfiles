@@ -14,6 +14,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
 Plugin 'mtscout6/vim-cjsx'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Valloric/YouCompleteMe'
 
 " Colorschemes
 Plugin 'endel/vim-github-colorscheme' "pretty diffs
