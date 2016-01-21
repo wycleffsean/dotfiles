@@ -96,12 +96,15 @@ alias swp='find . -iname "*.sw*"'
 alias tail-log="tail -f log/development.log"
 
 # Docker Machine
-docker_machine_default=dev
-docker_machine_status=$(docker-machine status $docker_machine_default)
-if [[ "$docker_machine_status" == "Running" ]]
-then
-  eval "$(docker-machine env $docker_machine_default)"
-fi
+function setDockerEnv() {
+  docker_machine_default=dev
+  docker_machine_status=$(docker-machine status $docker_machine_default)
+  if [[ "$docker_machine_status" == "Running" ]]
+  then
+    eval "$(docker-machine env $docker_machine_default)"
+  fi
+}
+setDockerEnv
 
 export LESS="${LESS} -S"
 export EDITOR=vim
