@@ -96,7 +96,12 @@ alias vim-swp="vim -O $(swp | sed s/\.swp// | sed 's/^.\///' | sed 's/\/./\//' |
 alias tail-log="tail -f log/development.log"
 
 # Docker Machine
-eval "$(docker-machine env default)"
+docker_machine_default=dev
+docker_machine_status=$(docker-machine status $docker_machine_default)
+if [[ "$docker_machine_status" == "Running" ]]
+then
+  eval "$(docker-machine env $docker_machine_default)"
+fi
 
 export LESS="${LESS} -S"
 export EDITOR=vim
