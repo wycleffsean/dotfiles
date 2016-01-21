@@ -11,7 +11,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'fatih/vim-go'
+Plugin 'mtscout6/vim-cjsx'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Valloric/YouCompleteMe'
 
 " Colorschemes
 Plugin 'endel/vim-github-colorscheme' "pretty diffs
@@ -20,12 +23,20 @@ Plugin 'endel/vim-github-colorscheme' "pretty diffs
 call vundle#end()
 filetype plugin indent on
 
+set nocompatible " Turn off vi compatibility
+set smartindent
+set autoindent
+filetype indent on " load indent file for the current filetype
+
 set laststatus=2
 set number
 set showcmd
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set splitbelow
 set splitright
+set backspace=2 "make backspace work like most other apps
+set ignorecase          " searches are case insensitive...
+set smartcase           " ... unless they contain at least one capital letter
 set expandtab
 set shiftwidth=2
 set softtabstop=2
