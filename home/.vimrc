@@ -59,7 +59,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " let g:ctrlp_map = '<D-p>'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_dont_split = 'NERD_tree_2'
+let g:ctrlp_dont_split = 'NERD_tree_1'
 " The Silver Searcher
 if executable('ag')
 	" Use ag over grep
@@ -78,3 +78,13 @@ nnoremap \ :Ag<SPACE>
 if &diff
   colorscheme github
 endif
+
+" mappings
+"set winminheight=0
+"set winheight=999
+"nmap <c-h> <c-w>h<c-w>_
+"nmap <c-j> <c-w>j<c-w>_
+"nmap <c-k> <c-w>k<c-w>_
+"nmap <c-l> <c-w>l<c-w>_
+let mapleader = " "
+map <leader>k :NERDTree<cr>
