@@ -109,3 +109,5 @@ setDockerEnv
 export LESS="${LESS} -S"
 export EDITOR=vim
 export GOPATH=$HOME/code/go
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
