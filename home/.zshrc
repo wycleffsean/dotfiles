@@ -111,4 +111,6 @@ export EDITOR=vim
 export GOPATH=$HOME/code/go
 export PATH="$PATH:$GOPATH/bin"
 
+source ~/.secrets
+
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
