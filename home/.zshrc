@@ -97,7 +97,7 @@ alias tail-log="tail -f log/development.log"
 
 # Docker Machine
 function setDockerEnv() {
-  docker_machine_default=dev
+  docker_machine_default=dinghy
   docker_machine_status=$(docker-machine status $docker_machine_default)
   if [[ "$docker_machine_status" == "Running" ]]
   then
