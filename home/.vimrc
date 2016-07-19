@@ -88,3 +88,8 @@ endif
 "nmap <c-l> <c-w>l<c-w>_
 let mapleader = " "
 map <leader>k :NERDTree<cr>
+
+if has('nvim')
+  "set termguicolors
+  "let g:python_host_prog = '/usr/local/bin/python2'
+endif
