@@ -15,6 +15,8 @@ Plugin 'fatih/vim-go'
 Plugin 'mtscout6/vim-cjsx'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'majutsushi/tagbar'
 
 " Colorschemes
 Plugin 'endel/vim-github-colorscheme' "pretty diffs
@@ -26,7 +28,7 @@ filetype plugin indent on
 set nocompatible " Turn off vi compatibility
 set smartindent
 set autoindent
-filetype indent on " load indent file for the current filetype
+"filetype indent on " load indent file for the current filetype
 
 set laststatus=2
 set number
@@ -50,6 +52,8 @@ endif
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal sts=2 sw=2
+" Align GitHub-flavored Markdown tables
+autocmd FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 syntax on
 
@@ -86,10 +90,56 @@ endif
 "nmap <c-j> <c-w>j<c-w>_
 "nmap <c-k> <c-w>k<c-w>_
 "nmap <c-l> <c-w>l<c-w>_
+
+
+" Leader Mappings
 let mapleader = " "
 map <leader>k :NERDTree<cr>
+nmap <leader>t :TagbarToggle<CR>
 
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+" ######
+" NEOVIM
+" ######
 if has('nvim')
   "set termguicolors
   "let g:python_host_prog = '/usr/local/bin/python2'
+
+  " Reload files when modified outside of editor
+  " i.e. git
+  " https://github.com/neovim/neovim/issues/2127#issuecomment-150954047
+  augroup AutoSwap
+          autocmd!
+          autocmd SwapExists *  call AS_HandleSwapfile(expand('<afile>:p'), v:swapname)
+  augroup END
+
+  function! AS_HandleSwapfile (filename, swapname)
+          " if swapfile is older than file itself, just get rid of it
+          if getftime(v:swapname) < getftime(a:filename)
+                  call delete(v:swapname)
+                  let v:swapchoice = 'e'
+          endif
+  endfunction
+  autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
+    \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
+
+  augroup checktime
+      au!
+      if !has("gui_running")
+          "silent! necessary otherwise throws errors when using command
+          "line window.
+          autocmd BufEnter,CursorHold,CursorHoldI,CursorMoved,CursorMovedI,FocusGained,BufEnter,FocusLost,WinLeave * checktime
+      endif
+  augroup END
 endif

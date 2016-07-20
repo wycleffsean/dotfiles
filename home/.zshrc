@@ -5,6 +5,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+source ~/.secrets
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -54,6 +55,7 @@ ZSH_THEME="clean"
 plugins=(git forklift vagrant compleat docker colored-man colorize hsi z osx)
 
 source $ZSH/oh-my-zsh.sh
+source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
@@ -94,6 +96,17 @@ alias swp='find . -iname "*.sw*"'
 #alias vim-git="vim -O $(git status -s | sed "s/??/ ?/g" | cut -d " " -f 3 | xargs)"
 #alias vim-swp="vim -O $(swp | sed s/\.swp// | sed 's/^.\///' | sed 's/\/./\//' | xargs)"
 alias tail-log="tail -f log/development.log"
+alias nib='
+  docker run \
+    -it \
+    --rm \
+    -v $(pwd):$(pwd) \
+    -w $(pwd) \
+    -v $HOME/.docker:/root/.docker:ro \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -e "DOCKER_HOST_URL=$DOCKER_HOST" \
+    technekes/nib'
+alias vim='nvim'
 
 # Docker Machine
 function setDockerEnv() {
@@ -104,6 +117,13 @@ function setDockerEnv() {
     eval "$(docker-machine env $docker_machine_default)"
   fi
 }
+
+function jobscount() {
+  local stopped=$(jobs -sp | wc -l)
+  local running=$(jobs -rp | wc -l)
+  ((running+stopped)) && echo -n "${running}r/${stopped}s "
+}
+
 setDockerEnv
 
 export LESS="${LESS} -S"
