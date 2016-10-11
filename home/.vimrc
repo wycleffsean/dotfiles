@@ -44,11 +44,12 @@ set shiftwidth=2
 set softtabstop=2
 "set t_ti= t_te= " don't clobber scrollbuffer
 set hlsearch
-if exists('+colorcolumn')
-   set colorcolumn=80
-else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
+"if exists('+colorcolumn')
+"   set colorcolumn=80
+"else
+"  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"endif
+let &colorcolumn=join(range(81,81),",")
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal sts=2 sw=2
