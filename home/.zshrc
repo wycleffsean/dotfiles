@@ -135,3 +135,6 @@ export PATH="/usr/local/sbin:$PATH" # homebrew sbin
 source ~/.secrets
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+# MOTD
+fortune | cowsay | lolcat
