@@ -20,6 +20,7 @@ Plugin 'majutsushi/tagbar'
 
 " Colorschemes
 Plugin 'endel/vim-github-colorscheme' "pretty diffs
+Plugin 'KeitaNakamura/neodark.vim'
 
 " Required, plugins available after
 call vundle#end()
@@ -79,6 +80,8 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
+" Colors
+colorscheme neodark
 if &diff
   colorscheme github
 endif
