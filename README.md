@@ -9,6 +9,14 @@ homesick clone wycleffsean/dotfiles
 homesick symlink dotfiles
 ```
 
+## Homebrew
+
+```
+cd ~
+brew tap Homebrew/bundle
+brew bundle
+```
+
 ## vim
 Install Vundle
 ```sh
