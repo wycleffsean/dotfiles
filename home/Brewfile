@@ -15,7 +15,6 @@ tap 'homebrew/versions'
 tap 'neovim/neovim'
 tap 'ravenac95/sudolikeaboss'
 cask 'osxfuse'
-cask 'python3'
 cask 'xquartz'
 brew 'autoconf'
 brew 'automake'
@@ -68,16 +67,15 @@ brew 'glib'
 brew 'go'
 brew 'glide'
 brew 'gmp'
-brew 'pinentry'
-brew 'gpg-agent'
-brew 'libusb', args: ['universal']
-brew 'libusb-compat', args: ['universal']
-brew 'gnupg2'
 brew 'libtasn1', args: ['universal']
 brew 'libunistring'
 brew 'nettle'
 brew 'p11-kit'
 brew 'gnutls'
+brew 'libusb', args: ['universal']
+brew 'pinentry'
+brew 'gnupg'
+brew 'gpg-agent'
 brew 'libtool', args: ['universal']
 brew 'graphviz'
 brew 'heroku'
@@ -91,6 +89,7 @@ brew 'leiningen'
 brew 'leptonica'
 brew 'openssl', args: ['universal']
 brew 'libevent'
+brew 'libusb-compat', args: ['universal']
 brew 'libgphoto2', args: ['universal']
 brew 'libicns', args: ['universal']
 brew 'libssh2'
@@ -98,7 +97,9 @@ brew 'libxdg-basedir'
 brew 'libxml2'
 brew 'little-cms2', args: ['universal']
 brew 'lua'
+brew 'm4'
 brew 'makedepend'
+brew 'mas'
 brew 'mysql'
 brew 'net-snmp'
 brew 'nomad'
@@ -137,14 +138,12 @@ brew 'vim'
 brew 'wget'
 brew 'wine'
 brew 'wxmac'
-brew 'homebrew/boneyard/unfs3'
+brew 'yarn'
+brew 'codekitchen/dinghy/unfs3'
 brew 'codekitchen/dinghy/dinghy'
-brew 'homebrew/boneyard/box2d'
-brew 'homebrew/dupes/m4'
 brew 'homebrew/fuse/ext4fuse'
 brew 'neovim/neovim/neovim', args: ['HEAD', 'with-release']
 brew 'ravenac95/sudolikeaboss/sudolikeaboss'
-cask '1password'
 cask 'chefdk'
 cask 'cord'
 cask 'dockertoolbox'
@@ -155,6 +154,7 @@ cask 'facter'
 cask 'flux'
 cask 'gitify'
 cask 'gns3'
+cask 'gnucash'
 cask 'handbrake'
 cask 'hyper'
 cask 'iterm2'
@@ -165,6 +165,8 @@ cask 'knox'
 cask 'namebench'
 cask 'postman'
 cask 'puppet'
+cask 'python3'
+cask 'remember-the-milk'
 cask 'serviio'
 cask 'skype'
 cask 'slack'
@@ -178,3 +180,21 @@ cask 'virtualbox'
 cask 'virtualbox-extension-pack'
 cask 'viscosity'
 cask 'wireshark'
+mas 'Affinity Designer', id: 824171161
+mas 'ForkLift', id: 412448059
+mas 'GIPHY CAPTURE', id: 668208984
+mas 'Harvest', id: 506189836
+mas 'iMovie', id: 408981434
+mas 'iPhoto', id: 408981381
+mas 'Keynote', id: 409183694
+mas 'Leaf', id: 576338668
+mas 'Markoff', id: 1084713122
+mas 'Microsoft Remote Desktop', id: 715768417
+mas 'Numbers', id: 409203825
+mas 'Pages', id: 409201541
+mas 'Paste', id: 967805235
+mas 'Simplenote', id: 692867256
+mas 'Sunrise Calendar', id: 886106985
+mas 'Unibox', id: 702816521
+mas 'Wunderlist', id: 410628904
+mas 'Xcode', id: 497799835
