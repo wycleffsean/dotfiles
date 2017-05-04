@@ -12,6 +12,7 @@
 	bcomp = trustExitCode
 [core]
 	excludesfile = /Users/sean/.gitignore_global
+	editor = vim
 [difftool "sourcetree"]
 	cmd = /usr/local/bin/bcomp $LOCAL $REMOTE
 	path = 
