@@ -5,6 +5,9 @@ fi
 
 source ~/.secrets
 
+# source all zsh config from ~/.zsh/after
+for f in ~/.zsh/after/*.zsh; do source $f; done
+
 # User configuration
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
@@ -44,23 +47,11 @@ alias swp='find . -iname "*.sw*"'
 #alias vim-swp="vim -O $(swp | sed s/\.swp// | sed 's/^.\///' | sed 's/\/./\//' | xargs)"
 alias tail-log="tail -f log/development.log"
 
-# Docker Machine
-function setDockerEnv() {
-  docker_machine_default=dinghy
-  docker_machine_status=$(docker-machine status $docker_machine_default)
-  if [[ "$docker_machine_status" == "Running" ]]
-  then
-    eval "$(docker-machine env $docker_machine_default)"
-  fi
-}
-
 function jobscount() {
   local stopped=$(jobs -sp | wc -l)
   local running=$(jobs -rp | wc -l)
   ((running+stopped)) && echo -n "${running}r/${stopped}s "
 }
-
-setDockerEnv
 
 export LESS="${LESS} -S"
 export EDITOR=vim
@@ -68,9 +59,6 @@ export GOPATH=$HOME/code/go
 export PATH="$PATH:$GOPATH/bin"
 export PATH="/usr/local/sbin:$PATH" # homebrew sbin
 
-source ~/.secrets
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-# MOTD
-fortune | cowsay | lolcat
