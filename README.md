@@ -27,3 +27,11 @@ vim +PluginInstall +qall
 ### Install Powerline fonts
 Download and set font in iTerm profile
 [Inconsolata-g for Powerline](https://github.com/powerline/fonts/raw/master/Inconsolata-g/Inconsolata-g%20for%20Powerline.otf)
+
+## PGP
+
+```
+# import keybase keys
+keybase pgp export | gpg --import
+keybase pgp export --secret | gpg --allow-secret-key-import --import
+```

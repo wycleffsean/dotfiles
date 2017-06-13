@@ -1,6 +1,7 @@
 [user]
 	name = Sean Carey
 	email = wycleffsean@gmail.com
+	signingKey = 779787E772A20366721609512AB4271E1454E6BD
 [diff]
 	tool = bc3
 	prompt = false
@@ -31,3 +32,7 @@
 	unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
 [rerere]
 	enabled = true
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
