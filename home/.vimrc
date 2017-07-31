@@ -17,6 +17,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'majutsushi/tagbar'
+Plugin 'airblade/vim-gitgutter'
 
 " Colorschemes
 Plugin 'endel/vim-github-colorscheme' "pretty diffs

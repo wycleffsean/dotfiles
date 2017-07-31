@@ -12,10 +12,12 @@ for f in ~/.zsh/after/*.zsh; do source $f; done
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 #source /usr/local/opt/chruby/share/chruby/auto.sh
-chruby ruby
+chruby ruby-2.4.0
 
 # Rust
-source $HOME/.cargo/env
+if [[ -s "$HOME/.cargo/env" ]]; then
+  source $HOME/.cargo/env
+fi
 #export PATH="$PATH:/Users/sean/.rvm/gems/ruby-2.1.1/bin:/Users/sean/.rvm/gems/ruby-2.1.1@global/bin:/Users/sean/.rvm/rubies/ruby-2.1.1/bin:/Users/sean/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/sean/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
