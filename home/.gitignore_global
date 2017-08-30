@@ -4,3 +4,4 @@
 *.swp
 .nfs*
 .env
+tags

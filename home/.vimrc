@@ -14,9 +14,9 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
 Plugin 'mtscout6/vim-cjsx'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'majutsushi/tagbar'
+Plugin 'ludovicchabant/vim-gutentags'
 
 " Colorschemes
 Plugin 'endel/vim-github-colorscheme' "pretty diffs
