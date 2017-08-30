@@ -1,168 +1,175 @@
-tap 'caskroom/cask'
-tap 'caskroom/versions'
-tap 'codekitchen/dinghy'
-tap 'homebrew/binary'
-tap 'homebrew/boneyard'
-tap 'homebrew/bundle'
-tap 'homebrew/completions'
-tap 'homebrew/core'
-tap 'homebrew/dupes'
-tap 'homebrew/fuse'
-tap 'homebrew/games'
-tap 'homebrew/science'
-tap 'homebrew/services'
-tap 'homebrew/versions'
-tap 'neovim/neovim'
-tap 'ravenac95/sudolikeaboss'
-cask 'osxfuse'
-cask 'xquartz'
-brew 'archey'
-brew 'autoconf'
-brew 'automake'
-brew 'awscli'
-brew 'bison'
-brew 'ghc'
-brew 'cabal-install'
-brew 'chruby'
-brew 'gmp@4'
-brew 'ppl@0.11'
-brew 'cloog@0.15'
-brew 'consul'
-brew 'ctags'
-brew 'ctop'
-brew 'libassuan'
-brew 'libksba'
-brew 'pth'
-brew 'dirmngr'
-brew 'dnsmasq'
-brew 'docker'
-brew 'libyaml'
-brew 'docker-compose'
-brew 'gettext'
-brew 'e2fsprogs'
-brew 'elasticsearch'
-brew 'yuicompressor'
-brew 'emscripten'
-brew 'exercism'
-brew 'ext4fuse'
-brew 'fzf'
-brew 'mpfr@2'
-brew 'libmpc@0.8'
-brew 'gcc@4.6'
-brew 'git-secret'
-brew 'glib'
-brew 'go'
-brew 'glide'
-brew 'gpg-agent'
-brew 'graphviz'
-brew 'heroku'
-brew 'htop-osx'
-brew 'xz'
-brew 'imagemagick'
-brew 'jq'
-brew 'kubernetes-cli'
-brew 'leiningen'
-brew 'leptonica'
-brew 'libevent'
-brew 'libssh2'
-brew 'libxdg-basedir'
-brew 'libxml2'
-brew 'lua'
-brew 'm4'
-brew 'mas'
-brew 'mysql'
-brew 'ncurses'
-brew 'nomad'
-brew 'ode'
-brew 'ossp-uuid'
-brew 'p7zip'
-brew 'packer'
-brew 'pixman'
-brew 'pkg-config'
-brew 'sqlite'
-brew 'python3'
-brew 'postgresql', restart_service: true
-brew 'qemu'
-brew 'rancher-compose'
-brew 'redis', restart_service: true
-brew 'rlwrap'
-brew 'ruby-build'
-brew 'ruby-install'
-brew 'sbt'
-brew 'sdl'
-brew 'sdl2'
-brew 'sdl_mixer'
-brew 'sdl_net'
-brew 'sdl_ttf'
-brew 'ssh-copy-id'
-brew 'swi-prolog'
-brew 'terraform'
-brew 'tesseract'
-brew 'the_silver_searcher'
-brew 'tmux'
-brew 'tree'
-brew 'vault'
-brew 'vim'
-brew 'wget'
-brew 'wine'
-brew 'wxmac'
-brew 'yarn'
-brew 'zsh'
-brew 'codekitchen/dinghy/unfs3'
-brew 'codekitchen/dinghy/dinghy'
-brew 'neovim/neovim/neovim', args: ['HEAD', 'with-release']
-brew 'ravenac95/sudolikeaboss/sudolikeaboss'
-cask 'chefdk'
-cask 'cord'
-cask 'docker-toolbox'
-cask 'dolphin'
-cask 'electrum'
-cask 'evernote'
-cask 'facter'
-cask 'flux'
-cask 'gitify'
-cask 'gns3'
-cask 'gnucash'
-cask 'handbrake'
-cask 'hyper'
-cask 'iterm2'
-cask 'iterm2-beta'
-cask 'karabiner'
-cask 'keka'
-cask 'knox'
-cask 'namebench'
-cask 'postman'
-cask 'puppet'
-cask 'python3'
-cask 'remember-the-milk'
-cask 'serviio'
-cask 'skype'
-cask 'slack'
-cask 'sqlitebrowser'
-cask 'stamp'
-cask 'staruml'
-cask 'swi-prolog'
-cask 'transmission'
-cask 'vagrant'
-cask 'virtualbox'
-cask 'virtualbox-extension-pack'
-cask 'viscosity'
-cask 'wireshark'
-mas 'Affinity Designer', id: 824171161
-mas 'ForkLift', id: 412448059
-mas 'GIPHY CAPTURE', id: 668208984
-mas 'Harvest', id: 506189836
-mas 'iMovie', id: 408981434
-mas 'iPhoto', id: 408981381
-mas 'Keynote', id: 409183694
-mas 'Leaf', id: 576338668
-mas 'Markoff', id: 1084713122
-mas 'Microsoft Remote Desktop', id: 715768417
-mas 'Numbers', id: 409203825
-mas 'Pages', id: 409201541
-mas 'Paste', id: 967805235
-mas 'Simplenote', id: 692867256
-mas 'Sunrise Calendar', id: 886106985
-mas 'Unibox', id: 702816521
-mas 'Wunderlist', id: 410628904
-mas 'Xcode', id: 497799835
+tap "caskroom/cask"
+tap "caskroom/versions"
+tap "codekitchen/dinghy"
+tap "homebrew/binary"
+tap "homebrew/boneyard"
+tap "homebrew/bundle"
+tap "homebrew/completions"
+tap "homebrew/core"
+tap "homebrew/dupes"
+tap "homebrew/fuse"
+tap "homebrew/games"
+tap "homebrew/science"
+tap "homebrew/services"
+tap "homebrew/versions"
+tap "neovim/neovim"
+tap "ravenac95/sudolikeaboss"
+tap "universal-ctags/universal-ctags"
+cask "osxfuse"
+cask "xquartz"
+brew "archey"
+brew "autoconf"
+brew "awscli"
+brew "bison"
+brew "ghc"
+brew "cabal-install"
+brew "chruby"
+brew "gmp@4"
+brew "ppl@0.11"
+brew "cloog@0.15"
+brew "consul"
+brew "ctop"
+brew "libassuan"
+brew "libksba"
+brew "pth"
+brew "dirmngr"
+brew "dnsmasq", restart_service: true
+brew "docker"
+brew "docker-compose"
+brew "gettext"
+brew "e2fsprogs"
+brew "yuicompressor"
+brew "emscripten"
+brew "exercism"
+brew "ext4fuse"
+brew "fzf"
+brew "mpfr@2"
+brew "libmpc@0.8"
+brew "gcc@4.6"
+brew "git-secret"
+brew "glib"
+brew "go"
+brew "glide"
+brew "gperf"
+brew "gpg-agent"
+brew "graphviz"
+brew "heroku"
+brew "htop-osx"
+brew "xz"
+brew "imagemagick"
+brew "jq"
+brew "kubernetes-cli"
+brew "leiningen"
+brew "leptonica"
+brew "libevent"
+brew "libssh2"
+brew "libxdg-basedir"
+brew "libxml2"
+brew "lua"
+brew "m4"
+brew "mas"
+brew "python3"
+brew "mobile-shell"
+brew "mysql"
+brew "ncurses"
+brew "neovim", args: ["HEAD", "with-release"]
+brew "nomad"
+brew "ode"
+brew "ossp-uuid"
+brew "p7zip"
+brew "packer"
+brew "pixman"
+brew "postgresql", restart_service: true
+brew "pstree"
+brew "qemu"
+brew "rancher-compose"
+brew "redis", restart_service: true
+brew "rlwrap"
+brew "ruby-build"
+brew "ruby-install"
+brew "sbt"
+brew "sdl"
+brew "sdl2"
+brew "sdl_mixer"
+brew "sdl_net"
+brew "sdl_ttf"
+brew "ssh-copy-id"
+brew "swi-prolog"
+brew "terraform"
+brew "tesseract"
+brew "the_silver_searcher"
+brew "tmux"
+brew "tree"
+brew "vault"
+brew "vim"
+brew "wget"
+brew "wine"
+brew "wxmac"
+brew "yarn"
+brew "zsh"
+brew "codekitchen/dinghy/unfs3"
+brew "codekitchen/dinghy/dinghy"
+brew "ravenac95/sudolikeaboss/sudolikeaboss"
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
+cask "chefdk"
+cask "cord"
+cask "daisydisk"
+cask "dash"
+cask "docker"
+cask "docker-toolbox"
+cask "dolphin"
+cask "electrum"
+cask "ethereum-wallet"
+cask "evernote"
+cask "facter"
+cask "flux"
+cask "gitify"
+cask "gns3"
+cask "gnucash"
+cask "handbrake"
+cask "hyper"
+cask "iterm2"
+cask "iterm2-beta"
+cask "karabiner"
+cask "keka"
+cask "knox"
+cask "minikube"
+cask "namebench"
+cask "postman"
+cask "puppet"
+cask "python3"
+cask "rdm"
+cask "remember-the-milk"
+cask "rubymine"
+cask "serviio"
+cask "skype"
+cask "slack"
+cask "sqlitebrowser"
+cask "stamp"
+cask "staruml"
+cask "swi-prolog"
+cask "transmission"
+cask "transmit"
+cask "vagrant"
+cask "virtualbox"
+cask "virtualbox-extension-pack"
+cask "viscosity"
+cask "wireshark"
+mas "Affinity Designer", id: 824171161
+mas "ForkLift", id: 412448059
+mas "GIPHY CAPTURE", id: 668208984
+mas "Harvest", id: 506189836
+mas "iMovie", id: 408981434
+mas "iPhoto", id: 408981381
+mas "Keynote", id: 409183694
+mas "Leaf", id: 576338668
+mas "Markoff", id: 1084713122
+mas "Microsoft Remote Desktop", id: 715768417
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Paste", id: 967805235
+mas "Simplenote", id: 692867256
+mas "Sunrise Calendar", id: 886106985
+mas "Unibox", id: 702816521
+mas "Wunderlist", id: 410628904
+mas "Xcode", id: 497799835
