@@ -7,7 +7,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'kchmck/vim-coffee-script'
@@ -66,6 +66,7 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:ctrlp_map = '<D-p>'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_dont_split = 'NERD_tree_1'
+let g:ctrlp_extensions = ['tag']
 " The Silver Searcher
 if executable('ag')
 	" Use ag over grep
@@ -100,6 +101,7 @@ endif
 let mapleader = " "
 map <leader>k :NERDTree<cr>
 nmap <leader>t :TagbarToggle<CR>
+nmap <leader>p :CtrlPTag<CR>
 
 " " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -108,10 +110,10 @@ nnoremap  <leader>y  "+y
 nnoremap  <leader>yy  "+yy
 
 " " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
+"nnoremap <leader>p "+p
+"nnoremap <leader>P "+P
+"vnoremap <leader>p "+p
+"vnoremap <leader>P "+P
 
 " Ruby
 " puts the caller
