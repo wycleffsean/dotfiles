@@ -67,20 +67,27 @@ let g:airline#extensions#tabline#enabled = 1
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_dont_split = 'NERD_tree_1'
 let g:ctrlp_extensions = ['tag']
-" The Silver Searcher
-if executable('ag')
-	" Use ag over grep
-	set grepprg=ag
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-	let g:ctrlp_use_caching = 0
+
+if executable('rg')
+  " Use ripgrep over ag
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+  let g:ctrlp_user_command = 'rg -l --no-ignore --hidden --text %s'
+  let g:ctrlp_use_caching = 0
+elseif executable('ag')
+  " Use ag over grep
+  set grepprg=ag
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
 endif
+
+" bind \ to grep shortcut
+command -nargs=+ -complete=file -bar Grep silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Grep<SPACE>
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" bind \ to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag<SPACE>
 
 " Colors
 colorscheme neodark
