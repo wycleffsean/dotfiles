@@ -56,6 +56,7 @@ let &colorcolumn=join(range(81,81),",")
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal sts=2 sw=2
 autocmd Filetype elm setlocal sts=4 sw=4 noignorecase
+autocmd Filetype python setlocal sts=4 sw=4 ts=4
 " Align GitHub-flavored Markdown tables
 autocmd FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
