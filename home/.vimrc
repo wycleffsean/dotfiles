@@ -11,6 +11,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'elmcast/elm-vim'
 Plugin 'fatih/vim-go'
 Plugin 'mtscout6/vim-cjsx'
 Plugin 'tpope/vim-fugitive'
@@ -54,6 +55,7 @@ let &colorcolumn=join(range(81,81),",")
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal sts=2 sw=2
+autocmd Filetype elm setlocal sts=4 sw=4 noignorecase
 " Align GitHub-flavored Markdown tables
 autocmd FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
@@ -63,10 +65,13 @@ let g:airline#extension#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t' "only show filename
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+
 " let g:ctrlp_map = '<D-p>'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_dont_split = 'NERD_tree_1'
 let g:ctrlp_extensions = ['tag']
+
+let g:elm_setup_keybindings = 0
 
 if executable('rg')
   " Use ripgrep over ag
