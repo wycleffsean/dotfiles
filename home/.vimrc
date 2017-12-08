@@ -130,7 +130,7 @@ nnoremap  <leader>yy  "+yy
 
 " Ruby
 " puts the caller
-nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
+nnoremap <leader>wtf oputs "#" * 90<c-m>p caller<c-m>puts "#" * 90<esc>
 
 " ######
 " NEOVIM
