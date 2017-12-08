@@ -51,8 +51,6 @@ function jobscount() {
 
 export LESS="${LESS} -S"
 export EDITOR=vim
-export GOPATH=$HOME/code/go
-export PATH="$PATH:$GOPATH/bin"
 export PATH="/usr/local/sbin:$PATH" # homebrew sbin
 
 
