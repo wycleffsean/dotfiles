@@ -76,9 +76,9 @@ let g:elm_setup_keybindings = 0
 
 if executable('rg')
   " Use ripgrep over ag
-  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepprg=rg\ --vimgrep\ --no-heading\ --sort-files
   set grepformat=%f:%l:%c:%m,%f:%l:%m
-  let g:ctrlp_user_command = 'rg -l --no-ignore --hidden --text %s'
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 elseif executable('ag')
   " Use ag over grep
