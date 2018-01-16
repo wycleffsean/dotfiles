@@ -53,6 +53,3 @@ export LESS="${LESS} -S"
 export EDITOR=vim
 export PATH="/usr/local/sbin:$PATH" # homebrew sbin
 
-
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-
