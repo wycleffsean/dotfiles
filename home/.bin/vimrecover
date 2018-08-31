@@ -1,0 +1,155 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+class CLI
+
+  attr_reader :action
+
+  def self.confirm(msg)
+    print '%s [Y/n] ' % msg
+    !!(gets.strip =~ /^y/i)
+  end
+
+  def initialize
+    @parser = OptionParser.new do |opts|
+      opts.banner = <<-BANNER # <<~ is only 2.3+, so we just left align
+Recover vim swapfiles after a session terminates unexpectedly
+
+globs will be logically or'd to limit results
+
+Usage: vimrecover [options] [globs]
+      BANNER
+
+      opts.on '-h', '--help', 'Show help' do
+        puts opts
+        exit
+      end
+
+      opts.on '-d', '--[no-]destroy', TrueClass, 'Destroy swapfiles' do |opt|
+        @action = :destroy if opt
+      end
+
+      opts.on '-o', '--open', 'Destroy swapfiles' do
+        @action = :open
+      end
+
+      opts.on '-r', '--[no-]recover', TrueClass, 'Automatically recover swapfiles' do |opt|
+        @action = :recover if opt
+      end
+
+      opts.on '-s', '--status', 'Display swapfiles and commands' do
+        @action = :status
+      end
+    end
+    @parser.parse!
+  end
+
+  def show_help
+    @parser.parse %w[--help]
+  end
+
+  def limits
+    ARGV
+  end
+end
+
+class RecoveredSession
+
+  def initialize(limits)
+    @limits = limits
+  end
+
+  def swapfiles
+    # deliberately only take first generation i.e. swp
+    @swapfiles ||= with_limits(Dir['**/.*.swp'])
+  end
+
+  def sourcefiles
+    swapfiles
+      .map { |swp|
+        basename = File.basename(swp)
+          .gsub(/^\./,'')
+          .gsub(/\.swp$/, '')
+        File.join(File.dirname(swp), basename)
+      }
+  end
+
+  def destroy!
+    raise NotImplementedError
+  end
+
+  def recover!
+    # TODO prompt to stage files in git
+    exec "vim -r #{sourcefile_args}"
+  end
+
+  def open
+    exec "vim -O #{sourcefile_args}"
+  end
+
+  def print_swapfiles
+    puts '# Swap files'
+    puts swapfiles.join("\n")
+    puts ''
+  end
+
+  def print_sourcefiles
+    puts '# Source files'
+    puts sourcefiles.join("\n")
+    puts ''
+  end
+
+  def print_status
+    if swapfiles.any?
+      print_swapfiles
+      print_sourcefiles
+      puts '# Commands'
+      puts "## Open previous session"
+      puts "vim -O #{sourcefile_args}"
+      puts ''
+      puts "## Remove swapfiles"
+      puts "rm #{swapfile_args}"
+    else
+      puts 'No swapfiles found'
+    end
+  end
+
+  private
+
+  def with_limits(files)
+    return files
+    #return files if @limits.empty?
+    # the glob should operate on source files, but we first recover swapfiles
+    # should create a map { swap => source } to filter appropriately
+    #res = files & @limits.reduce([]) {|acc, glob|
+    #   acc + Dir[glob]
+    #}
+  end
+
+  def sourcefile_args
+    sourcefiles.join(' ')
+  end
+
+  def swapfile_args
+    swapfiles.join(' ')
+  end
+end
+
+cli = CLI.new
+session = RecoveredSession.new(cli.limits)
+
+case cli.action
+when :destroy
+  session.print_swapfiles
+  session.destroy! if CLI.confirm 'Are you sure you want to delete the swap files?'
+when :open
+  session.open
+when :recover
+  session.print_swapfiles
+  session.print_sourcefiles
+  session.recover! if CLI.confirm 'Autorecovering might clobber existing changes, are you sure?'
+when :status
+  session.print_status
+else cli.show_help
+end
