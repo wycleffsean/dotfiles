@@ -10,6 +10,12 @@ def a_hash
   {hello: "world", free: "of charge"}
 end
 
+def pbcopy(input)
+  str = input.to_s
+  IO.popen('pbcopy', 'w') { |f| f << str }
+  str
+end
+
 # Pry.config.pager = true
 # Pry.config.editor = "emacs"
 Pry.config.color = true
@@ -61,6 +67,8 @@ puts "c  : continue"
 puts "s  : step"
 puts "n  : next"
 puts "r!  : reload!"
+puts
+puts "pbcopy('put this in clipboard')"
 puts
 puts "Samples variables"
 puts "a_array  :  [1, 2, 3, 4, 5, 6]"
