@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'optparse'
+require 'fileutils'
 
 class CLI
 
@@ -55,6 +56,7 @@ Usage: vimrecover [options] [globs]
 end
 
 class RecoveredSession
+  include FileUtils
 
   def initialize(limits)
     @limits = limits
@@ -76,7 +78,7 @@ class RecoveredSession
   end
 
   def destroy!
-    raise NotImplementedError
+    rm swapfiles
   end
 
   def recover!
