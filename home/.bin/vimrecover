@@ -2,8 +2,42 @@
 
 require 'optparse'
 require 'fileutils'
+require 'singleton'
+
+# a list of files which is always filtered
+# by limiters passed to CLI
+class FileSet < SimpleDelegator
+  # @files can be string or array
+  def initialize(files)
+    files = files.each_line.map(&:chomp) if files.is_a? String
+    super with_limits(files)
+  end
+
+  def map(*args, &block)
+    # return instance of FileSet
+    self.class.new super(*args, &block)
+  end
+
+  def to_args
+    join(' ')
+  end
+
+  private
+
+  def with_limits(files)
+    #CLI.instance.limits
+    return files
+    #return files if @limits.empty?
+    # the glob should operate on source files, but we first recover swapfiles
+    # should create a map { swap => source } to filter appropriately
+    #res = files & @limits.reduce([]) {|acc, glob|
+    #   acc + Dir[glob]
+    #}
+  end
+end
 
 class CLI
+  include Singleton
 
   attr_reader :action
 
@@ -31,8 +65,12 @@ Usage: vimrecover [options] [globs]
         @action = :destroy if opt
       end
 
-      opts.on '-o', '--open', 'Destroy swapfiles' do
+      opts.on '-o', '--open', 'Open session' do
         @action = :open
+      end
+
+      opts.on '-g', '--git', 'Open git diff' do
+        @action = :git
       end
 
       opts.on '-r', '--[no-]recover', TrueClass, 'Automatically recover swapfiles' do |opt|
@@ -58,13 +96,14 @@ end
 class RecoveredSession
   include FileUtils
 
-  def initialize(limits)
-    @limits = limits
+  def gitfiles
+    # deliberately only take first generation i.e. swp
+    @gitfiles ||= FileSet.new `git ls-files --modified`
   end
 
   def swapfiles
     # deliberately only take first generation i.e. swp
-    @swapfiles ||= with_limits(Dir['**/.*.swp'])
+    @swapfiles ||= FileSet.new Dir.glob('**/.*.swp', File::FNM_DOTMATCH)
   end
 
   def sourcefiles
@@ -83,11 +122,17 @@ class RecoveredSession
 
   def recover!
     # TODO prompt to stage files in git
-    exec "vim -r #{sourcefile_args}"
+    exec "vim -r #{sourcefiles.to_args}"
   end
 
-  def open
-    exec "vim -O #{sourcefile_args}"
+  def open(fileset = :swapfiles)
+    case fileset
+    when :swapfiles
+      exec "vim -O #{sourcefiles.to_args}"
+    when :git_diff
+      exec "vim -O #{gitfiles.to_args}"
+    else raise ArgumentError, "#{fileset} is not a valid option"
+    end
   end
 
   def print_swapfiles
@@ -108,38 +153,18 @@ class RecoveredSession
       print_sourcefiles
       puts '# Commands'
       puts "## Open previous session"
-      puts "vim -O #{sourcefile_args}"
+      puts "vim -O #{sourcefiles.to_args}"
       puts ''
       puts "## Remove swapfiles"
-      puts "rm #{swapfile_args}"
+      puts "rm #{swapfiles.to_args}"
     else
       puts 'No swapfiles found'
     end
   end
-
-  private
-
-  def with_limits(files)
-    return files
-    #return files if @limits.empty?
-    # the glob should operate on source files, but we first recover swapfiles
-    # should create a map { swap => source } to filter appropriately
-    #res = files & @limits.reduce([]) {|acc, glob|
-    #   acc + Dir[glob]
-    #}
-  end
-
-  def sourcefile_args
-    sourcefiles.join(' ')
-  end
-
-  def swapfile_args
-    swapfiles.join(' ')
-  end
 end
 
-cli = CLI.new
-session = RecoveredSession.new(cli.limits)
+cli = CLI.instance
+session = RecoveredSession.new
 
 case cli.action
 when :destroy
@@ -147,6 +172,8 @@ when :destroy
   session.destroy! if CLI.confirm 'Are you sure you want to delete the swap files?'
 when :open
   session.open
+when :git
+  session.open(:git_diff)
 when :recover
   session.print_swapfiles
   session.print_sourcefiles
