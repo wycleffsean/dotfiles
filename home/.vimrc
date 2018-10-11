@@ -9,6 +9,7 @@ Plugin 'gmarik/Vundle.vim'
 " Plugins
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'bling/vim-airline'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'elmcast/elm-vim'
