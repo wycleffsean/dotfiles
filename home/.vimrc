@@ -7,7 +7,9 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins
+if !has('nvim')
 Plugin 'ctrlpvim/ctrlp.vim'
+endif
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'bling/vim-airline'
@@ -18,7 +20,24 @@ Plugin 'mtscout6/vim-cjsx'
 Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'majutsushi/tagbar'
-Plugin 'ludovicchabant/vim-gutentags'
+"Plugin 'ludovicchabant/vim-gutentags'
+"Plugin 'neoclide/coc.nvim' " nixed in favor of nvim lsp
+"Plugin 'dense-analysis/ale' " nixed in favor of
+Plugin 'LnL7/vim-nix'
+
+if has('nvim')
+" lsp
+Plugin 'neovim/nvim-lspconfig'
+Plugin 'hrsh7th/cmp-nvim-lsp'
+Plugin 'hrsh7th/nvim-cmp'
+Plugin 'hrsh7th/cmp-vsnip'
+Plugin 'hrsh7th/vim-vsnip'
+
+" Telescope
+Plugin 'nvim-lua/plenary.nvim'
+Plugin 'nvim-telescope/telescope.nvim'
+Plugin 'nvim-telescope/telescope-fzf-native.nvim'
+endif
 
 " Colorschemes
 Plugin 'endel/vim-github-colorscheme' "pretty diffs
@@ -68,10 +87,13 @@ let g:airline#extensions#tabline#fnamemod = ':t' "only show filename
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-" let g:ctrlp_map = '<D-p>'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_dont_split = 'NERD_tree_1'
-let g:ctrlp_extensions = ['tag']
+if !has('nvim')
+  " let g:ctrlp_map = '<D-p>'
+  let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+  let g:ctrlp_dont_split = 'NERD_tree_1'
+  let g:ctrlp_extensions = ['tag']
+  nmap <leader>p :CtrlPTag<CR>
+endif
 
 let g:elm_setup_keybindings = 0
 
@@ -115,7 +137,6 @@ endif
 let mapleader = " "
 map <leader>k :NERDTree<cr>
 nmap <leader>t :TagbarToggle<CR>
-nmap <leader>p :CtrlPTag<CR>
 
 " " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -166,4 +187,91 @@ if has('nvim')
           autocmd BufEnter,CursorHold,CursorHoldI,CursorMoved,CursorMovedI,FocusGained,BufEnter,FocusLost,WinLeave * checktime
       endif
   augroup END
+
+  " Find files using Telescope command-line sugar.
+  nnoremap <leader>p <cmd>Telescope find_files<cr>
+  nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+  nnoremap <leader>] <cmd>Telescope grep_string<cr>
+  nnoremap <leader>fb <cmd>Telescope buffers<cr>
+  nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+  nnoremap <leader>t <cmd>Telescope lsp_document_symbols<cr>
+  cmap <C-R> <Plug>(TelescopeFuzzyCommandSearch)
+
+  " Using Lua functions
+  " nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+  " nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+  " nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+  " nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+  "
+
+lua << EOF
+  -- require'lspconfig'.solargraph.setup{}
+  require'lspconfig'.sorbet.setup{ cmd = { "srb", "tc", "--lsp", "--disable-watchman" } }
+  require'lspconfig'.tsserver.setup{}
+  require'lspconfig'.nimls.setup{}
+
+  require('telescope').load_extension('fzf')
+
+  print(vim.lsp.get_log_path())
+
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    mapping = {
+      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ['<Tab>'] = cmp.mapping.select_next_item(),
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require('lspconfig')['solargraph'].setup {
+    capabilities = capabilities
+  }
+EOF
 endif
+

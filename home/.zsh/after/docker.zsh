@@ -7,7 +7,7 @@ function setDockerEnv() {
     eval "$(docker-machine env $docker_machine_default)"
   fi
 }
-setDockerEnv
+#setDockerEnv
 
 function docker-volume-report() {
   for info in $(docker volume ls | awk '{ print $2 }'); do

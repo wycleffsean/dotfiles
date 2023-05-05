@@ -107,7 +107,7 @@ zstyle ':prezto:module:ruby:info:version' format 'version:%v'
 #
 
 # Auto switch the Ruby version on directory change.
-# zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
+zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
 
 #
 # Screen

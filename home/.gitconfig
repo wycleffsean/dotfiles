@@ -23,6 +23,7 @@
 [push]
 	default = simple
 [alias]
+	chekcout = checkout
 	ignored = ls-files -o -i --exclude-standard
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	filelog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --numstat -u -- 
@@ -36,3 +37,5 @@
 	gpgsign = true
 [tag]
 	gpgsign = true
+[pull]
+	rebase = true

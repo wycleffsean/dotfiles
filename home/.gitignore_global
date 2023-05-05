@@ -4,4 +4,10 @@
 *.swp
 .nfs*
 .env
-tags
+tags*
+
+lib/tasks/sean
+sandbox
+
+# Python
+__pycache__

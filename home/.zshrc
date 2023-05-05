@@ -51,5 +51,13 @@ function jobscount() {
 
 export LESS="${LESS} -S"
 export EDITOR=vim
+export BUNDLER_EDITOR=vim
 export PATH="/usr/local/sbin:$PATH" # homebrew sbin
+export PATH="/usr/local/opt/llvm@4/bin:$PATH" # https://github.com/oracle/truffleruby/blob/master/doc/user/installing-llvm.md
 
+#function jt { ruby /Users/sean/code/github.com/graalvm/truffleruby/tool/jt.rb "$@"; }
+function jt { ruby /Users/sean/code/github.com/oracle/truffleruby/tool/jt.rb "$@"; }
+
+unalias rb
+export PATH="$HOME/.bin:$PATH"
+export PATH="/usr/local/opt/llvm/bin:$PATH"

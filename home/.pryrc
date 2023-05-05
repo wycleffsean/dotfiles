@@ -19,7 +19,7 @@ end
 # Pry.config.pager = true
 # Pry.config.editor = "emacs"
 Pry.config.color = true
-Pry.config.prompt = Pry::NAV_PROMPT
+#Pry.config.prompt = Pry::NAV_PROMPT
 #Pry.prompt = [proc { |obj, nest_level, _| "#{RUBY_VERSION} (#{obj}):#{nest_level} > " }, proc { |obj, nest_level, _| "#{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
 
 Pry.config.commands.alias_command "h", "hist -T 20", desc: "Last 20 commands"
