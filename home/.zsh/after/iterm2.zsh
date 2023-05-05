@@ -8,4 +8,6 @@ function iterm2_print_user_vars() {
   else
     iterm2_set_user_var 'jobs' ''
   fi
+
+  iterm2_set_user_var 'rubyVersion' $(ruby -v | awk '{ print $2 }')
 }
